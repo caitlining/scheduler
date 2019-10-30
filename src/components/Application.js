@@ -21,7 +21,6 @@ const [state, setState] = useState({
 const setDay = day => setState({...state, day});
 
 const appointments = getAppointmentsForDay(state, state.day);
-const interviewers = getInterviewersForDay(state, state.day);
 
 
 const appointmentList = appointments.map( appointment => {
@@ -33,7 +32,7 @@ const appointmentList = appointments.map( appointment => {
       id={appointment.id}
       time={appointment.time}
       interview={interview}
-      interviewers={interviewers}
+      interviewers={getInterviewersForDay(state, state.day)}
     />
   );
 })

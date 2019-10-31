@@ -19,7 +19,9 @@ const [state, setState] = useState({
 })
 
 const setDay = day => setState({...state, day});
+
 const appointments = getAppointmentsForDay(state, state.day);
+console.log(appointments);
 
 function bookInterview(id, interview) {
 
@@ -47,16 +49,14 @@ function cancelInterview(id) {
 
   const nullAppointment = {
     ...state.appointments[id],
-    interview: {...state.appointments[id].interview}
+    interview: null
   }
-
-  nullAppointment.interview.interviewer = null;
-  nullAppointment.interview.student = null;
 
   const appointments = {
     ...state.appointments,
     [id]: nullAppointment
   };
+
 
   return axios.delete(`api/appointments/${id}`)
   .then(response => {
@@ -70,14 +70,12 @@ function cancelInterview(id) {
 
 
 const appointmentList = appointments.map( appointment => {
-  const interview = getInterview(state, appointment.interview)
-
   return(
     <Appointment 
       key={appointment.id}
       id={appointment.id}
       time={appointment.time}
-      interview={interview}
+      interview={getInterview(state, appointment.interview)}
       interviewers={getInterviewersForDay(state, state.day)}
       bookInterview={bookInterview}
       cancelInterview={cancelInterview}

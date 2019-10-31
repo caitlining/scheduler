@@ -1,5 +1,4 @@
 import React from "react";
-
 import "components/Appointment/styles.scss";
 
 import Header from "components/Appointment/Header";
@@ -47,9 +46,6 @@ export default function Appointment(props) {
         transition(ERROR_SAVE, true);
       })
     }
-
- 
-
   };
 
   function confirmation() {
@@ -68,9 +64,6 @@ export default function Appointment(props) {
     })
   }
 
-
-
-
   return (
     <article className="appointment">
       <Header time={props.time}/>
@@ -84,8 +77,6 @@ export default function Appointment(props) {
         {mode === ERROR_DELETE && <Error message= 'Error deleting appointment' onClose={() => back()}/>}
         {mode === ERROR_SAVE && <Error message= 'Error saving appointment' onClose={() => back()}/>}
         {mode === ERROR_MISSING_INFO && <Error message= 'Please ensure to include both your name and a selected interviewer' onClose={() => back()}/>}
-
-
     </article>
   );
 };

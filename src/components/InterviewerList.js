@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment } from "react";
 import InterviewerListItem from "components/InterviewerListItem";
 import "components/InterviewerList.scss";
 import "components/InterviewerListItem.scss";
@@ -17,14 +17,14 @@ export default function InterviewerList(props) {
   });
 
   return (
-    <fragment>
+    <React.Fragment>
       <section className="interviewers">
         <h4 className="interviewers__header text--light">Interviewer</h4>
         <ul className="interviewers__list">
           {interviewers}
         </ul>
       </section>  
-    </fragment>
+    </React.Fragment>
   )
 };
 

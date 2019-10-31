@@ -19,8 +19,31 @@ const [state, setState] = useState({
 })
 
 const setDay = day => setState({...state, day});
-
 const appointments = getAppointmentsForDay(state, state.day);
+
+function bookInterview(id, interview) {
+
+  const appointment = {
+    ...state.appointments[id],
+    interview: { ...interview}
+  };
+
+  const appointments = {
+    ...state.appointments,
+    [id]: appointment
+  };
+
+  const apiPutPromise =  
+  axios.put(`/api/appointments/${id}`, appointment)
+  .then(response => {
+    setState({
+      ...state,
+      appointments
+    })
+  })
+
+  return apiPutPromise;
+};
 
 
 const appointmentList = appointments.map( appointment => {
@@ -33,9 +56,12 @@ const appointmentList = appointments.map( appointment => {
       time={appointment.time}
       interview={interview}
       interviewers={getInterviewersForDay(state, state.day)}
+      bookInterview={bookInterview}
     />
   );
 })
+
+
 
   useEffect(() => {
     Promise.all([

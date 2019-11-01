@@ -11,13 +11,10 @@ function reducer(state, action) {
       return {...state, day: action.value}
     case SET_APPLICATION_DATA:
       return {
-        ...state,
-        days: action.value[0].data,
-        appointments: action.value[1].data,
-        interviewers: action.value[2].data
+        ...state, days: action.days, appointments: action.appointments, interviewers: action.interviewers
       }
     case SET_INTERVIEW: {
-      return {...state, days: action.days, appointments: action.value}
+      return {...state, days: action.days, appointments: action.appointments}
     }
     default:
       throw new Error(
@@ -42,7 +39,10 @@ export default function useApplicationData() {
       axios.get("/api/interviewers")
     ])
     .then(response => {
-      dispatch({ type: SET_APPLICATION_DATA, value: response})
+      const days = response[0].data
+      const appointments = response[1].data
+      const interviewers = response[2].data
+      dispatch({ type: SET_APPLICATION_DATA, days, appointments, interviewers})
     });
   }, [])
 
@@ -71,7 +71,7 @@ export default function useApplicationData() {
 
     return axios.delete(`api/appointments/${id}`)
     .then(() => {
-      dispatch({ type: SET_INTERVIEW, days: days, value: appointments})
+      dispatch({ type: SET_INTERVIEW, days, appointments})
     })
   }
 
@@ -96,7 +96,7 @@ export default function useApplicationData() {
 
     return axios.put(`/api/appointments/${id}`, appointment)
     .then(() => {
-      dispatch({ type: SET_INTERVIEW, value: appointments, days: days})
+      dispatch({ type: SET_INTERVIEW, appointments, days})
     })
   };
 

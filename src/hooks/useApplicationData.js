@@ -76,6 +76,21 @@ export default function useApplicationData() {
   }
 
   function bookInterview(id, interview) {
+
+    let days = state.days
+
+    if (!state.appointments[id].interview) {
+      days = state.days.map((item, index) => {
+        if (item.appointments.includes(id)){
+          item.spots --
+          return item
+        } else {
+          return item
+      }
+    })
+
+    }
+
     const appointment = {
       ...state.appointments[id],
       interview: { ...interview}
@@ -84,15 +99,6 @@ export default function useApplicationData() {
       ...state.appointments,
       [id]: appointment
     };
-
-    const days = state.days.map((item, index) => {
-      if (item.appointments.includes(id)){
-        item.spots --
-        return item
-      } else {
-        return item
-      }
-    })
 
     return axios.put(`/api/appointments/${id}`, appointment)
     .then(() => {

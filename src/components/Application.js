@@ -10,6 +10,7 @@ import { getInterviewersForDay } from "helpers/selectors";
 import useApplicationData from "hooks/useApplicationData";
 
 export default function Application(props) {
+
   const {
     state,
     setDay,

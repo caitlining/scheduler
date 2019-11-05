@@ -35,9 +35,9 @@ export default function Appointment(props) {
       interviewer: interviewer
     };
 
-    // if(!interview.interviewer || !interview.student){
-    //   transition(ERROR_MISSING_INFO, true)
-    // } else {
+    if(!interview.interviewer){
+      transition(ERROR_MISSING_INFO, true)
+    } else {
       props.bookInterview(props.id, interview)
       .then(() => {
         transition(SHOW);
@@ -45,7 +45,7 @@ export default function Appointment(props) {
       .catch(error => {
         transition(ERROR_SAVE, true);
       })
-    // }
+    }
   };
 
   function confirmation() {
@@ -76,7 +76,7 @@ export default function Appointment(props) {
         {mode === CONFIRM && <Confirm message= 'Are you sure you would like to delete?' onCancel={() => back()} onConfirm={cancel} />}
         {mode === ERROR_DELETE && <Error message= 'Error deleting appointment' onClose={() => back()}/>}
         {mode === ERROR_SAVE && <Error message= 'Error saving appointment' onClose={() => back()}/>}
-        {mode === ERROR_MISSING_INFO && <Error message= 'Please ensure to include both your name and a selected interviewer' onClose={() => back()}/>}
+        {mode === ERROR_MISSING_INFO && <Error message= 'You must select an interviewer' onClose={() => back()}/>}
     </article>
   );
 };

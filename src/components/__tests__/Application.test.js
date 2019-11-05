@@ -64,7 +64,7 @@ describe ("Application", () => {
     const day = getAllByTestId(container, "day").find(day =>
       queryByText(day, "Monday")
     );
-    expect(getByText(day, /1 spot remaining/i)).toBeInTheDocument(); 
+    expect(getByText(day, /2 spots remaining/i)).toBeInTheDocument(); 
   })
 
   it("loads data, edits an interview and keeps the spots remaining for Monday the same", async () => {

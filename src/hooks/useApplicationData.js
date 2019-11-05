@@ -40,12 +40,13 @@ export default function useApplicationData() {
       [id]: nullAppointment
     };
 
-    const days = state.days.map((item) => {
-      if (item.appointments.includes(id)){
-        item.spots ++
-        return item
+    const days = state.days.map((day) => {
+      const dayCopy = {...day};
+      if (dayCopy.appointments.includes(id)){
+        dayCopy.spots ++
+        return dayCopy
       } else {
-        return item
+        return dayCopy
       }
     })
 
@@ -60,12 +61,13 @@ export default function useApplicationData() {
     let days = state.days
 
     if (!state.appointments[id].interview) {
-      days = state.days.map((item) => {
-        if (item.appointments.includes(id)){
-          item.spots --
-          return item
+      days = state.days.map((day) => {
+        const dayCopy = {...day};
+        if (dayCopy.appointments.includes(id)){
+          dayCopy.spots --
+          return dayCopy
         } else {
-          return item
+          return dayCopy
       }
     })
 

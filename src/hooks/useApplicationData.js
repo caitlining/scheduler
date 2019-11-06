@@ -58,7 +58,7 @@ export default function useApplicationData() {
 
   function bookInterview(id, interview) {
 
-    let days = state.days
+    let days = state.days;
 
     if (!state.appointments[id].interview) {
       days = state.days.map((day) => {

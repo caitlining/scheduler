@@ -40,6 +40,9 @@ export default function useApplicationData() {
       [id]: nullAppointment
     };
 
+    /*
+      Updating days to increase the interview spots available on the day where the interview is being deleted
+    */
     const days = state.days.map((day) => {
       const dayCopy = {...day};
       if (dayCopy.appointments.includes(id)){
@@ -60,6 +63,10 @@ export default function useApplicationData() {
 
     let days = state.days;
 
+    /*
+     Check to see if the appointment is being created from a previously null appointment
+     if so, updating days to decrease the number of spots available for that day
+     */
     if (!state.appointments[id].interview) {
       days = state.days.map((day) => {
         const dayCopy = {...day};

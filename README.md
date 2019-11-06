@@ -1,4 +1,6 @@
-# Interview Scheduler
+# **Interview Scheduler**
+
+Interview Scheduler is a single page React application that allows users to book and cancel interviews.
 
 ## Setup
 

@@ -50,7 +50,7 @@ export default function Appointment(props) {
 
   function confirmation() {
     transition(CONFIRM);
-  }
+  };
 
   function cancel() {
     transition(DELETING, true);
@@ -62,7 +62,7 @@ export default function Appointment(props) {
     .catch(error => {
       transition(ERROR_DELETE, true);
     })
-  }
+  };
 
   return (
     <article className="appointment" data-testid="appointment">

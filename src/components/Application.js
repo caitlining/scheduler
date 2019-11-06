@@ -10,7 +10,6 @@ import { getInterviewersForDay } from "helpers/selectors";
 import useApplicationData from "hooks/useApplicationData";
 
 export default function Application(props) {
-
   const {
     state,
     setDay,
@@ -21,7 +20,6 @@ export default function Application(props) {
   const appointments = getAppointmentsForDay(state, state.day);
 
   const appointmentList = appointments.map( appointment => {
-
     return(
       <Appointment 
         key={appointment.id}
@@ -63,4 +61,4 @@ export default function Application(props) {
       </section>
     </main>
   );
-}
+};

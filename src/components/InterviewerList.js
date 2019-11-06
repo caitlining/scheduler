@@ -13,7 +13,7 @@ export default function InterviewerList(props) {
       name={interviewer.name}
       avatar={interviewer.avatar}
       selected={interviewer.id === props.value}
-      setInterviewer={event => props.onChange(interviewer.id)}
+      setInterviewer={() => props.onChange(interviewer.id)}
       />
     )
   });
@@ -33,4 +33,4 @@ export default function InterviewerList(props) {
 InterviewerList.propTypes = {
   value: PropTypes.number,
   onChange: PropTypes.func.isRequired
-}
+};

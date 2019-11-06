@@ -30,7 +30,6 @@ describe("Form", () => {
     const onSave = jest.fn();
     const { getByText } = render(<Form interviewers={interviewers} name={undefined} onSave={onSave}/>)
     fireEvent.click(getByText("Save"));
-
     expect(getByText(/student name cannot be blank/i)).toBeInTheDocument();
     expect(onSave).not.toHaveBeenCalled();
   });
@@ -49,8 +48,8 @@ describe("Form", () => {
     fireEvent.change(getByPlaceholderText("Enter Student Name"), {
       target: {value: "Lydia Miller-Jones"}
     });
-    fireEvent.click(getByText("Save"));
 
+    fireEvent.click(getByText("Save"));
     expect(queryByText(/student name cannot be blank/i)).toBeNull();
 
     expect(onSave).toHaveBeenCalledTimes(1);
@@ -69,15 +68,14 @@ describe("Form", () => {
     );
 
     fireEvent.click(getByText("Save"));
-
     fireEvent.change(getByPlaceholderText("Enter Student Name"), {
       target: {value: "Lydia Miller-Jones"}
     });
-
     fireEvent.click(getByText("Cancel"));
 
     expect(queryByText(/student name cannot be blank/i)).toBeNull();
     expect(getByPlaceholderText("Enter Student Name")).toHaveValue("");
     expect(onCancel).toHaveBeenCalledTimes(1);
-  })
-})
+  });
+  
+});

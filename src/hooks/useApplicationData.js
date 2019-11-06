@@ -4,7 +4,6 @@ import axios from "axios";
 import reducer, { SET_DAY, SET_APPLICATION_DATA, SET_INTERVIEW } from "reducers/application";
 
 export default function useApplicationData() {
-
   const [state, dispatch] = useReducer(reducer, {
       day: "Monday",
       days: [],
@@ -35,6 +34,7 @@ export default function useApplicationData() {
       ...state.appointments[id],
       interview: null
     };
+
     const appointments = {
       ...state.appointments,
       [id]: nullAppointment
@@ -68,15 +68,15 @@ export default function useApplicationData() {
           return dayCopy
         } else {
           return dayCopy
-      }
-    })
-
+        }
+      })
     }
 
     const appointment = {
       ...state.appointments[id],
       interview: { ...interview}
     };
+
     const appointments = {
       ...state.appointments,
       [id]: appointment
@@ -88,5 +88,5 @@ export default function useApplicationData() {
     })
   };
 
-  return { state, setDay, bookInterview, cancelInterview}
+  return { state, setDay, bookInterview, cancelInterview }
 };
